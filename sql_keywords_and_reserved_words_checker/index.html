@@ -13,31 +13,50 @@
       }
 
       class Words {
-          constructor(name, image, version, url, keywords, file) {
+          constructor(name, image, url, file, words = []) {
               this.name = name;
               this.image = image;
               this.url = url;
               this.file = file;
+              this.words = words;
           }
       }
 
       const set = [
           new Words(
               "MySQL",
-              "https://www.mysql.com/common/logos/logo-mysql.eps",
-              "9.3",
+              "https://www.mysql.com/common/logos/logo-mysql-170x115.png",
               "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
-              "mysql.txt"
+              "_mysql.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "https://www.simpleindex.com/wp-content/uploads/2023/07/IBM-DB2-Logo.png",
+              "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
+              "_db2.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "https://onacit.github.io/sql_keywords_and_reserved_words_checker/Oracle logo.png",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle.txt",
+              []
           )
       ]
 
-      fetch("mysql.txt")
-          .then((res) => res.text())
-          .then((text) => {
-              // do something with "text"
-              console.log(text);
-          })
-          .catch((e) => console.error(e));
+      set.map(w => {
+          fetch(w.file)
+              .then(r => r.text())
+              .then(t => t.split('\n')
+                  .map(l => l.trim())
+                  .filter(l => l.length > 0)
+                  .map(l => {
+                      w.words.push(l);
+                  })
+              );
+      });
 
   </script>
 </head>
