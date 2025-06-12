@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SQL Reserved Words Checker</title>
+  <script language="javascript" type="text/javascript">
+      // https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
+      class Word {
+          constructor(value, keyword, reserved) {
+              this.value = value;
+              this.keyword = keyword;
+              this.reserved = reserved;
+          }
+      }
+
+      class Words {
+          constructor(name, image, version, url, keywords, file) {
+              this.name = name;
+              this.image = image;
+              this.url = url;
+              this.file = file;
+          }
+      }
+
+      const set = [
+          new Words(
+              "MySQL",
+              "https://www.mysql.com/common/logos/logo-mysql.eps",
+              "9.3",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
+              "mysql.txt"
+          )
+      ]
+
+      fetch("mysql.txt")
+          .then((res) => res.text())
+          .then((text) => {
+              // do something with "text"
+              console.log(text);
+          })
+          .catch((e) => console.error(e));
+
+  </script>
+</head>
+<body>
+<h1>SQL Reserved Words Checker</h1>
+<p>
+  Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words Checker (by
+  Pete Freitag)</a>
+</p>
+<!-- https://www.petefreitag.com/tools/sql_reserved_words_checker/ -->
+<form action="/action_page.php">
+  <label for="word">Word:</label>
+  <input type="text" id="word" name="word"/>
+  <input type="submit" value="Check">
+</form>
+
+
+<img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL Logo"/>
+
+
+<img src="https://www.simpleindex.com/wp-content/uploads/2023/07/IBM-DB2-Logo.png" alt="IBM DB2 Logo"/>
+
+<img src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg" alt="Microsoft SQL Server Logo"/>
+
+<img src="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg" alt="PostgreSQL Logo"/>
+
+</body>
+<footer>
+</footer>
+</html>
