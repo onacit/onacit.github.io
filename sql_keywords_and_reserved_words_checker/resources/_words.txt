@@ -7,7 +7,7 @@
 
 
 
-
+https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words
 
 
 
