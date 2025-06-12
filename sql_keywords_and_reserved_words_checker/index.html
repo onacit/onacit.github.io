@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <title>SQL Reserved Words Checker</title>
+  <title>SQL Words Checker</title>
+  <!--  <link rel="stylesheet" href="https://cd¬n.simplecss.org/simple.min.css">-->
+  <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200" data-rh="true">-->
+  <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"-->
+  <!--        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">-->
+  <!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <script language="javascript" type="text/javascript">
       // https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
       class Word {
@@ -58,24 +64,76 @@
               );
       });
 
+      function window_onload() {
+          const params = new URLSearchParams(window.location.search);
+          const word = params.get('word');
+      }
+
+      window.onload = window_onload;
+
   </script>
 </head>
 <body>
-<h1>SQL Reserved Words Checker</h1>
+<h1>SQL Words Checker</h1>
 <p>
   Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words Checker (by
   Pete Freitag)</a>
 </p>
+<hr/>
 <!-- https://www.petefreitag.com/tools/sql_reserved_words_checker/ -->
 <form action="/action_page.php">
-  <label for="word">Word:</label>
-  <input type="text" id="word" name="word"/>
+  <fieldset>
+    <label>
+      Word
+      <input type="text" name="word" placeholder="A word to check?"/>
+    </label>
+  </fieldset>
   <input type="submit" value="Check">
 </form>
+
+<hr/>
+
+<p style="display:inline; float:left;">
+  Current word:
+<div id="word">sldfjadlfjldsfj</div>
+</p>
+
+<hr/>
+
+<table>
+  <caption>Availability of aaa</caption>
+  <thead>
+  <tr>
+    <th>database</th>
+    <th>available</th>
+    <th>link</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>MySQL</td>
+    <td>bbb</td>
+    <td>bbb</td>
+  </tr>
+  <tr>
+    <td>aaaa</td>
+    <td>bbb</td>
+    <td>bbb</td>
+  </tr>
+  <tr>
+    <td>aaaa</td>
+    <td>bbb</td>
+    <td>bbb</td>
+  </tr>
+  </tbody>
+</table>
+
 
 
 <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL Logo"/>
 
+
+<img src="./Db2 Logo.png" alt="Db2 Logo">
 
 <img src="https://www.simpleindex.com/wp-content/uploads/2023/07/IBM-DB2-Logo.png" alt="IBM DB2 Logo"/>
 
