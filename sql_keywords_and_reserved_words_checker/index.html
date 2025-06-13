@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+  <meta charset="UTF-8">
   <title>SQL Words Checker</title>
   <!--  <link rel="stylesheet" href="https://cd¬n.simplecss.org/simple.min.css">-->
   <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200" data-rh="true">-->
@@ -19,9 +20,9 @@
       }
 
       class Words {
-          constructor(name, image, url, file, words = []) {
+          constructor(name, version, url, file, words = []) {
               this.name = name;
-              this.image = image;
+              this.version = version;
               this.url = url;
               this.file = file;
               this.words = words;
@@ -31,23 +32,65 @@
       const set = [
           new Words(
               "MySQL",
-              "https://www.mysql.com/common/logos/logo-mysql-170x115.png",
+              "5.7",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html",
+              "_mysql57.txt",
+              []
+          ),
+          new Words(
+              "MySQL",
+              "8.0",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-0.html",
+              "_mysql80.txt",
+              []
+          ),
+          new Words(
+              "MySQL",
+              "8.4",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-4.html",
+              "_mysql84.txt",
+              []
+          ),
+          new Words(
+              "MySQL",
+              "9.3",
               "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
               "_mysql.txt",
               []
           ),
           new Words(
               "DB2",
-              "https://www.simpleindex.com/wp-content/uploads/2023/07/IBM-DB2-Logo.png",
+              "12.1.0",
               "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
-              "_db2.txt",
+              "_db2_12_1_0.txt",
               []
           ),
           new Words(
               "ORACLE",
-              "https://onacit.github.io/sql_keywords_and_reserved_words_checker/Oracle logo.png",
+              "19",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle_19.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "23",
               "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
-              "_oracle.txt",
+              "_oracle_23.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2022",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
+              "_sqlserver_2022.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2025",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
+              "_sqlserver_2025.txt",
               []
           )
       ]
@@ -71,77 +114,112 @@
 
       window.onload = window_onload;
 
+      function check_word() {
+          const tbody = document.getElementById('tbody');
+          const rowCount = tbody.rows.length;
+          for (let i = rowCount - 1; i >= 0; i--) {
+              tbody.deleteRow(i);
+          }
+          let word = document.getElementById('word').value;
+          if (word === null || word.length === 0) {
+              console.log("no word");
+              document.getElementById('current_word').innerHTML = '...';
+              return;
+          }
+          word = word.toUpperCase();
+          console.log("checking... '" + word + "'");
+          document.getElementById('current_word').innerHTML = word;
+          set.map(w => {
+              console.log(w);
+              const tr = document.createElement('tr');
+              tbody.appendChild(tr);
+              {
+                  const tdName = document.createElement('td'); // name
+                  tdName.innerHTML = w.name;
+                  tr.appendChild(tdName);
+              }
+              {
+                  const tdVersion = document.createElement('td'); // version
+                  tdVersion.innerHTML = w.version;
+                  tr.appendChild(tdVersion);
+              }
+              {
+                  const tdAvailable = document.createElement('td'); // available
+                  if (w.words.includes(word)) {
+                      tdAvailable.innerHTML = 'no';
+                  } else {
+                      tdAvailable.innerHTML = 'yes';
+                  }
+                  tr.appendChild(tdAvailable);
+              }
+              {
+                  const tdLink = document.createElement('td'); // link
+                  tdLink.innerHTML = '<a href="' + w.url + '">' + w.url + '</a>';
+                  tr.appendChild(tdLink);
+              }
+          });
+      }
+
   </script>
 </head>
+
 <body>
 <h1>SQL Words Checker</h1>
-<p>
-  Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words Checker (by
-  Pete Freitag)</a>
-</p>
+
 <hr/>
-<!-- https://www.petefreitag.com/tools/sql_reserved_words_checker/ -->
-<form action="/action_page.php">
+
+<form>
   <fieldset>
     <label>
       Word
-      <input type="text" name="word" placeholder="A word to check?"/>
+      <input type="search" id="word" name="word" placeholder="A word to check?" oninput="check_word()"/>
     </label>
   </fieldset>
-  <input type="submit" value="Check">
+  <!--  <input type="submit" value="Check">-->
 </form>
 
 <hr/>
 
-<p style="display:inline; float:left;">
-  Current word:
-<div id="word">sldfjadlfjldsfj</div>
-</p>
+<!--<p style="display:inline; float:left;">-->
+<!--  Current word:-->
+<!--<div id="word">sldfjadlfjldsfj</div>-->
+<!--</p>-->
 
 <hr/>
 
 <table>
-  <caption>Availability of aaa</caption>
+  <caption>Availability of <strong id="current_word">word</strong></caption>
   <thead>
   <tr>
     <th>database</th>
+    <th>version</th>
     <th>available</th>
     <th>link</th>
   </tr>
   </thead>
-  <tbody>
-  <tr>
-    <td>MySQL</td>
-    <td>bbb</td>
-    <td>bbb</td>
-  </tr>
-  <tr>
-    <td>aaaa</td>
-    <td>bbb</td>
-    <td>bbb</td>
-  </tr>
-  <tr>
-    <td>aaaa</td>
-    <td>bbb</td>
-    <td>bbb</td>
-  </tr>
+  <tbody id="tbody">
   </tbody>
 </table>
 
 
+<!--<img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL Logo"/>-->
 
-<img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL Logo"/>
 
+<!--<img src="./Db2 Logo.png" alt="Db2 Logo">-->
 
-<img src="./Db2 Logo.png" alt="Db2 Logo">
+<!--<img src="https://www.simpleindex.com/wp-content/uploads/2023/07/IBM-DB2-Logo.png" alt="IBM DB2 Logo"/>-->
 
-<img src="https://www.simpleindex.com/wp-content/uploads/2023/07/IBM-DB2-Logo.png" alt="IBM DB2 Logo"/>
+<!--<img src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg" alt="Microsoft SQL Server Logo"/>-->
 
-<img src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg" alt="Microsoft SQL Server Logo"/>
-
-<img src="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg" alt="PostgreSQL Logo"/>
+<!--<img src="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg" alt="PostgreSQL Logo"/>-->
 
 </body>
+
 <footer>
+  <p>
+    Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words
+    Checker</a> (by Pete Freitag)
+  </p>
 </footer>
+
 </html>

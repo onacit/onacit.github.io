@@ -1,5 +1,5 @@
-
-
+https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
+https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html
 
 
 
@@ -13,3 +13,10 @@ https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-
 
 
 https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17
+
+
+
+
+
+https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html
+https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Oracle-SQL-Reserved-Words.html
