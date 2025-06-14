@@ -1,183 +1,204 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <title>SQL Words Checker</title>
-    <!--  <link rel="stylesheet" href="https://cd¬n.simplecss.org/simple.min.css">-->
-    <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200" data-rh="true">-->
-    <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"-->
-    <!--        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">-->
-    <!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <script language="javascript" type="text/javascript">
-        // https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
-        class Word {
-            constructor(value, keyword, reserved) {
-                this.value = value;
-                this.keyword = keyword;
-                this.reserved = reserved;
-            }
-        }
+  <meta charset="UTF-8">
+  <title>SQL Words Checker</title>
+  <!--  <link rel="stylesheet" href="https://cd¬n.simplecss.org/simple.min.css">-->
+  <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200" data-rh="true">-->
+  <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"-->
+  <!--        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">-->
+  <!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <script language="javascript" type="text/javascript">
+      // https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
+      class Word {
+          constructor(value, keyword, reserved) {
+              this.value = value;
+              this.keyword = keyword;
+              this.reserved = reserved;
+          }
+      }
 
-        class Words {
-            constructor(name, version, url, file, words = []) {
-                this.name = name;
-                this.version = version;
-                this.url = url;
-                this.file = file;
-                this.words = words;
-            }
-        }
+      class Words {
+          constructor(name, version, url, file, words = []) {
+              this.name = name;
+              this.version = version;
+              this.url = url;
+              this.file = file;
+              this.words = words;
+          }
+      }
 
-        const set = [
-            new Words(
-                "MySQL",
-                "5.7",
-                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html",
-                "_mysql57.txt",
-                []
-            ),
-            new Words(
-                "MySQL",
-                "8.0",
-                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-0.html",
-                "_mysql80.txt",
-                []
-            ),
-            new Words(
-                "MySQL",
-                "8.4",
-                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-4.html",
-                "_mysql84.txt",
-                []
-            ),
-            new Words(
-                "MySQL",
-                "9.3",
-                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
-                "_mysql.txt",
-                []
-            ),
-            new Words(
-                "DB2",
-                "12.1.0",
-                "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
-                "_db2_12_1_0.txt",
-                []
-            ),
-            new Words(
-                "ORACLE",
-                "19",
-                "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
-                "_oracle_19.txt",
-                []
-            ),
-            new Words(
-                "ORACLE",
-                "23",
-                "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
-                "_oracle_23.txt",
-                []
-            ),
-            new Words(
-                "SQL Server",
-                "2022",
-                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
-                "_sqlserver_2022.txt",
-                []
-            ),
-            new Words(
-                "SQL Server",
-                "2025",
-                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
-                "_sqlserver_2025.txt",
-                []
-            )
-        ]
+      const set = [
+          new Words(
+              "MySQL",
+              "5.7",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html",
+              "_mysql57.txt",
+              []
+          ),
+          new Words(
+              "MySQL",
+              "8.0",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-0.html",
+              "_mysql80.txt",
+              []
+          ),
+          new Words(
+              "MySQL",
+              "8.4",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-4.html",
+              "_mysql84.txt",
+              []
+          ),
+          new Words(
+              "MySQL",
+              "9.3",
+              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
+              "_mysql.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "12.1.0",
+              "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
+              "_db2_12_1_0.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "19",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle_19.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "23",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle_23.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2022",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
+              "_sqlserver_2022.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2025",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
+              "_sqlserver_2025.txt",
+              []
+          )
+      ]
 
-        set.map(w => {
-            fetch(w.file)
-                .then(r => r.text())
-                .then(t => t.split('\n')
-                    .map(l => l.trim())
-                    .filter(l => l.length > 0)
-                    .map(l => {
-                        w.words.push(l);
-                    })
-                );
-        });
+      set.map(w => {
+          fetch(w.file)
+              .then(r => r.text())
+              .then(t => t.split('\n')
+                  .map(l => l.trim())
+                  .filter(l => l.length > 0)
+                  .map(l => {
+                      w.words.push(l);
+                  })
+              );
+      });
 
-        function window_onload() {
-            const params = new URLSearchParams(window.location.search);
-            const word = params.get('word');
-        }
 
-        window.onload = window_onload;
+      function check_word() {
+          console.log('check_word()');
 
-        function check_word() {
-            const tbody = document.getElementById('tbody');
-            const rowCount = tbody.rows.length;
-            for (let i = rowCount - 1; i >= 0; i--) {
-                tbody.deleteRow(i);
-            }
-            let word = document.getElementById('word').value;
-            if (word === null || word.length === 0) {
-                console.log("no word");
-                document.getElementById('current_word').innerHTML = '...';
-                return;
-            }
-            word = word.toUpperCase();
-            console.log("checking... '" + word + "'");
-            document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
-            set.map(w => {
-                console.log(w);
-                const available = !w.words.includes(word);
-                const tr = document.createElement('tr');
-                // if (!available) {
-                //     tr.style.setProperty('background', '#F8CAB9');
-                // }
-                tbody.appendChild(tr);
-                {
-                    const tdName = document.createElement('td'); // name
-                    tdName.innerHTML = w.name;
-                    tr.appendChild(tdName);
-                }
-                {
-                    const tdVersion = document.createElement('td'); // version
-                    tdVersion.innerHTML = w.version;
-                    tr.appendChild(tdVersion);
-                }
-                {
-                    const tdAvailable = document.createElement('td'); // available
-                    if (available) {
-                        tdAvailable.innerHTML = '<div style="color:#398712">YES</div>';
-                    } else {
-                        tdAvailable.innerHTML = '<div style="color:#D93526;font-weight: bold;">NO</div>';
-                    }
-                    tr.appendChild(tdAvailable);
-                }
-                {
-                    const tdLink = document.createElement('td'); // link
-                    tdLink.innerHTML = '<a href="' + w.url + '" target="_blank">check</a>';
-                    tr.appendChild(tdLink);
-                }
-            });
-        }
+          set.map(w => {
+              // console.log('words: ' + w.words);
+          });
 
-    </script>
+          const tbody = document.getElementById('tbody');
+          console.log('tbody: ' + tbody);
+
+          // delete all rows
+          {
+              // const rowCount = tbody.rows.length;
+              // console.log('rowCount: ' + rowCount);
+              // for (let i = rowCount - 1; i >= 0; i--) {
+              //     console.log('deleting ' + i);
+              //     tbody.deleteRow(i);
+              // }
+              tbody.innerHTML = '';
+              // const rows = tbody.querySelectorAll('tr');
+              // for (const row of rows) {
+              //     row.remove();
+              // }
+          }
+
+          let word = document.getElementById('word').value;
+          if (word === null || word.length === 0) {
+              console.log("no word");
+              document.getElementById('current_word').innerHTML = '...';
+              return;
+          }
+          word = word.toUpperCase();
+          console.log("checking... '" + word + "'");
+          document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
+          set.map(w => {
+              const available = !w.words.includes(word);
+              const tr = document.createElement('tr');
+              // if (!available) {
+              //     tr.style.setProperty('background', '#F8CAB9');
+              // }
+              tbody.appendChild(tr);
+              {
+                  const tdName = document.createElement('td'); // name
+                  tdName.innerHTML = w.name;
+                  tr.appendChild(tdName);
+              }
+              {
+                  const tdVersion = document.createElement('td'); // version
+                  tdVersion.innerHTML = w.version;
+                  tr.appendChild(tdVersion);
+              }
+              {
+                  const tdAvailable = document.createElement('td'); // available
+                  if (available) {
+                      tdAvailable.innerHTML = '<div style="color:#398712">YES</div>';
+                  } else {
+                      tdAvailable.innerHTML = '<div style="color:#D93526;font-weight: bold;">NO</div>';
+                  }
+                  tr.appendChild(tdAvailable);
+              }
+              {
+                  const tdLink = document.createElement('td'); // link
+                  tdLink.innerHTML = '<a href="' + w.url + '" target="_blank">check</a>';
+                  tr.appendChild(tdLink);
+              }
+          });
+      }
+
+      function window_onload() {
+          console.log('window_onload');
+          const params = new URLSearchParams(window.location.search);
+          const word = params.get('word');
+          check_word()
+      }
+
+      window.onload = window_onload;
+
+  </script>
 </head>
 
 <body>
 <h1>SQL Words Checker</h1>
 
 <form>
-    <fieldset>
-        <label>
-            A word to check?
-            <input type="search" id="word" name="word" placeholder="A word to check?" oninput="check_word()"/>
-        </label>
-    </fieldset>
-    <!--  <input type="submit" value="Check">-->
+  <fieldset>
+    <label>
+      A word to check?
+      <input type="search" id="word" name="word" placeholder="A word to check?" oninput="check_word()"/>
+    </label>
+  </fieldset>
+  <!--  <input type="submit" value="Check">-->
 </form>
 
 <!--<p style="display:inline; float:left;">-->
@@ -188,17 +209,17 @@
 <hr/>
 
 <table class="striped">
-    <caption>Availability of <strong id="current_word" style="color:#3C71F7"></strong></caption>
-    <thead>
-    <tr>
-        <th>Database</th>
-        <th>Version</th>
-        <th>Available</th>
-        <th>Link</th>
-    </tr>
-    </thead>
-    <tbody id="tbody">
-    </tbody>
+  <caption>Availability of <strong id="current_word" style="color:#3C71F7"></strong></caption>
+  <thead>
+  <tr>
+    <th>Database</th>
+    <th>Version</th>
+    <th>Available</th>
+    <th>Link</th>
+  </tr>
+  </thead>
+  <tbody id="tbody">
+  </tbody>
 </table>
 
 
@@ -216,10 +237,10 @@
 </body>
 
 <footer>
-    <p>
-        Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words
-        Checker</a> (by Pete Freitag)
-    </p>
+  <p>
+    Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words
+    Checker</a> (by Pete Freitag)
+  </p>
 </footer>
 
 </html>
