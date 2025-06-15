@@ -7,6 +7,7 @@ https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html
 
 
 
+https://www.ibm.com/docs/en/db2/10.5.0?topic=sql-reserved-schema-names-reserved-words
 https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words
 
 

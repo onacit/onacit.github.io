@@ -32,6 +32,13 @@
 
       const set = [
           new Words(
+              "SQLite",
+              "N/A",
+              "https://sqlite.org/lang_keywords.html",
+              "_sqlite.txt",
+              []
+          ),
+          new Words(
               "MySQL",
               "5.7",
               "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html",
@@ -60,10 +67,108 @@
               []
           ),
           new Words(
+              "PostgreSQL",
+              "13",
+              "https://www.postgresql.org/docs/13/sql-keywords-appendix.html",
+              "_postgresql_13.txt",
+              []
+          ),
+          new Words(
+              "PostgreSQL",
+              "14",
+              "https://www.postgresql.org/docs/14/sql-keywords-appendix.html",
+              "_postgresql_14.txt",
+              []
+          ),
+          new Words(
+              "PostgreSQL",
+              "15",
+              "https://www.postgresql.org/docs/15/sql-keywords-appendix.html",
+              "_postgresql_15.txt",
+              []
+          ),
+          new Words(
+              "PostgreSQL",
+              "16",
+              "https://www.postgresql.org/docs/16/sql-keywords-appendix.html",
+              "_postgresql_16.txt",
+              []
+          ),
+          new Words(
+              "PostgreSQL",
+              "17",
+              "https://www.postgresql.org/docs/17/sql-keywords-appendix.html",
+              "_postgresql_17.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "9.7.0",
+              "https://www.ibm.com/docs/en/db2/9.7.0?topic=sql-reserved-schema-names-reserved-words",
+              "_db2_9_7_0.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "10.1.0",
+              "https://www.ibm.com/docs/en/db2/10.1.0?topic=sql-reserved-schema-names-reserved-words",
+              "_db2_10_1_0.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "10.5.0",
+              "https://www.ibm.com/docs/en/db2/10.5.0?topic=sql-reserved-schema-names-reserved-words",
+              "_db2_10_5_0.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "11.1.0",
+              "https://www.ibm.com/docs/en/db2/11.1.0?topic=sql-reserved-schema-names-reserved-words",
+              "_db2_12_1_0.txt",
+              []
+          ),
+          new Words(
+              "DB2",
+              "11.5.x",
+              "https://www.ibm.com/docs/en/db2/11.5.x?topic=sql-reserved-schema-names-reserved-words",
+              "_db2_11_5_x.txt",
+              []
+          ),
+          new Words(
               "DB2",
               "12.1.0",
               "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
               "_db2_12_1_0.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "11.2",
+              "https://docs.oracle.com/cd/E11882_01/server.112/e41084/ap_keywd001.htm#BABCJAEB",
+              "_oracle_11_2.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "12.1",
+              "https://docs.oracle.com/database/121/SQLRF/ap_keywd001.htm#BABCJAEB",
+              "_oracle_12_1.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "12.2",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle_12_2.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
+              "18",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/18/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle_18.txt",
               []
           ),
           new Words(
@@ -75,9 +180,37 @@
           ),
           new Words(
               "ORACLE",
+              "21",
+              "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
+              "_oracle_21.txt",
+              []
+          ),
+          new Words(
+              "ORACLE",
               "23",
               "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
               "_oracle_23.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2016",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
+              "_sqlserver_2016.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2017",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
+              "_sqlserver_2017.txt",
+              []
+          ),
+          new Words(
+              "SQL Server",
+              "2019",
+              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
+              "_sqlserver_2019.txt",
               []
           ),
           new Words(
@@ -117,7 +250,7 @@
           });
 
           const tbody = document.getElementById('tbody');
-          console.log('tbody: ' + tbody);
+          console.log("tbody.innerHTML: " + tbody.innerHTML);
 
           // delete all rows
           {
@@ -127,7 +260,9 @@
               //     console.log('deleting ' + i);
               //     tbody.deleteRow(i);
               // }
+              console.log('clearing tbody...')
               tbody.innerHTML = '';
+              console.log("tbody.innerHTML: " + tbody.innerHTML);
               // const rows = tbody.querySelectorAll('tr');
               // for (const row of rows) {
               //     row.remove();
@@ -135,6 +270,9 @@
           }
 
           let word = document.getElementById('word').value;
+          if (word !== null) {
+              word = word.trim();
+          }
           if (word === null || word.length === 0) {
               console.log("no word");
               document.getElementById('current_word').innerHTML = '...';
@@ -143,6 +281,7 @@
           word = word.toUpperCase();
           console.log("checking... '" + word + "'");
           document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
+          document.getElementById('tbody').innerHTML = '';
           set.map(w => {
               const available = !w.words.includes(word);
               const tr = document.createElement('tr');
@@ -179,14 +318,21 @@
 
       function window_onload() {
           console.log('window_onload');
-          const params = new URLSearchParams(window.location.search);
-          const word = params.get('word');
+          document.getElementById('word').value = new URLSearchParams(window.location.search).get('word');
           check_word()
       }
 
       window.onload = window_onload;
 
   </script>
+  <style>
+      img {
+          /*max-width: 30px;*/
+          /*height: auto;*/
+          max-height: 30px;
+          width: auto;
+      }
+  </style>
 </head>
 
 <body>
@@ -201,11 +347,6 @@
   </fieldset>
   <!--  <input type="submit" value="Check">-->
 </form>
-
-<!--<p style="display:inline; float:left;">-->
-<!--  Current word:-->
-<!--<div id="word">sldfjadlfjldsfj</div>-->
-<!--</p>-->
 
 <hr/>
 
