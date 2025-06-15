@@ -229,28 +229,35 @@
           )
       ]
 
-      set.map(w => {
-          fetch(w.file)
-              .then(r => r.text())
-              .then(t => t.split('\n')
-                  .map(l => l.trim())
-                  .filter(l => l.length > 0)
-                  .map(l => {
-                      w.words.push(l);
-                  })
-              );
-      });
+      let promises;
 
+      async function fetch_words() {
+          promises = set.map(w => {
+              return fetch(w.file)
+                  .then(r => r.text())
+                  .then(t => t.split('\n')
+                      .map(l => l.trim())
+                      .filter(l => l.length > 0)
+                      .map(l => {
+                          w.words.push(l);
+                      })
+                  );
+          });
+      }
 
-      function check_word() {
-          console.log('check_word()');
+      fetch_words();
+
+      async function check_word() {
+          // console.log('check_word()');
+
+          const result = await Promise.all(promises);
 
           set.map(w => {
               // console.log('words: ' + w.words);
           });
 
           const tbody = document.getElementById('tbody');
-          console.log("tbody.innerHTML: " + tbody.innerHTML);
+          // console.log("tbody.innerHTML: " + tbody.innerHTML);
 
           // delete all rows
           {
@@ -260,9 +267,9 @@
               //     console.log('deleting ' + i);
               //     tbody.deleteRow(i);
               // }
-              console.log('clearing tbody...')
+              // console.log('clearing tbody...')
               tbody.innerHTML = '';
-              console.log("tbody.innerHTML: " + tbody.innerHTML);
+              // console.log("tbody.innerHTML: " + tbody.innerHTML);
               // const rows = tbody.querySelectorAll('tr');
               // for (const row of rows) {
               //     row.remove();
@@ -274,15 +281,16 @@
               word = word.trim();
           }
           if (word === null || word.length === 0) {
-              console.log("no word");
+              // console.log("no word");
               document.getElementById('current_word').innerHTML = '...';
               return;
           }
           word = word.toUpperCase();
-          console.log("checking... '" + word + "'");
+          // console.log("checking... '" + word + "'");
           document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
           document.getElementById('tbody').innerHTML = '';
           set.map(w => {
+              const unknown = w.words.length === 0;
               const available = !w.words.includes(word);
               const tr = document.createElement('tr');
               // if (!available) {
@@ -301,10 +309,12 @@
               }
               {
                   const tdAvailable = document.createElement('td'); // available
-                  if (available) {
-                      tdAvailable.innerHTML = '<div style="color:#398712">YES</div>';
-                  } else {
-                      tdAvailable.innerHTML = '<div style="color:#D93526;font-weight: bold;">NO</div>';
+                  if (!unknown) {
+                      if (available) {
+                          tdAvailable.innerHTML = '<div style="color:#398712">YES</div>';
+                      } else {
+                          tdAvailable.innerHTML = '<div style="color:#D93526;font-weight: bold;">NO</div>';
+                      }
                   }
                   tr.appendChild(tdAvailable);
               }
@@ -317,8 +327,9 @@
       }
 
       function window_onload() {
-          console.log('window_onload');
+          // console.log('window_onload');
           document.getElementById('word').value = new URLSearchParams(window.location.search).get('word');
+          fetch_words();
           check_word()
       }
 
@@ -338,7 +349,7 @@
 <body>
 <h1>SQL Words Checker</h1>
 
-<form>
+<form action="">
   <fieldset>
     <label>
       A word to check?
