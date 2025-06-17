@@ -428,6 +428,19 @@
       function window_onload() {
           // console.log('window_onload');
           document.getElementById('word').value = new URLSearchParams(window.location.search).get('word');
+
+          const grid = document.getElementById('grid');
+          names.forEach(name => {
+              grid.addEventListener('change', function (e) {})
+              const div = document.createElement('div');
+              div.innerHTML = '<input type="checkbox" id="' + name + '" name="' + name + '" onchange="check_word()"/>' + '' +
+                  '<label for="' + name + '">' + name + '</label>';
+              div.querySelector('input').addEventListener('change', function (e) {
+                  check_word();
+              });
+              grid.appendChild(div);
+          })
+
           fetch_words();
           check_word()
       }
