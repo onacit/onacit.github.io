@@ -389,6 +389,19 @@
           document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
           document.getElementById('tbody').innerHTML = '';
           set.map(w => {
+
+              // const all = document.getElementsByName('All')[0].checked;
+              // if (all) {
+              //     document.getElementsByName(w.name)[0].disabled = false;
+              // } else {
+              //     document.getElementsByName(w.name)[0].enabled = true;
+              // }
+              const checked = document.getElementsByName(w.name)[0].checked;
+              // if (!all && !checked) {
+              if (!checked) {
+                  return;
+              }
+
               const unknown = w.words.length === 0;
               const available = !w.words.includes(word);
               const tr = document.createElement('tr');
@@ -430,14 +443,14 @@
           document.getElementById('word').value = new URLSearchParams(window.location.search).get('word');
 
           const grid = document.getElementById('grid');
-          names.forEach(name => {
-              grid.addEventListener('change', function (e) {})
+          names.forEach(n => {
+              // grid.addEventListener('change', function (e) {})
               const div = document.createElement('div');
-              div.innerHTML = '<input type="checkbox" id="' + name + '" name="' + name + '" onchange="check_word()"/>' + '' +
-                  '<label for="' + name + '">' + name + '</label>';
-              div.querySelector('input').addEventListener('change', function (e) {
-                  check_word();
-              });
+              div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '" checked onchange="check_word()"/>' + '' +
+                  '<label for="' + n + '">' + n + '</label>';
+              // div.querySelector('input').addEventListener('change', function (e) {
+              //     check_word();
+              // });
               grid.appendChild(div);
           })
 
@@ -468,10 +481,10 @@
       <input type="search" id="word" name="word" placeholder="A word to check?" oninput="check_word()"/>
     </label>
     <div id="grid" class="grid">
-      <div>
-        <input type="checkbox" id="all" name="all" checked onchange="check_word()"/>
-        <label for="all">All</label>
-      </div>
+<!--      <div>-->
+<!--        <input type="checkbox" id="all" name="All" checked onchange="check_word()"/>-->
+<!--        <label for="all">All</label>-->
+<!--      </div>-->
     </div>
   </fieldset>
   <!--  <input type="submit" value="Check">-->
