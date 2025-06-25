@@ -445,11 +445,11 @@
                   }
                   tr.appendChild(tdAvailable);
               }
-              {
-                  const tdLink = document.createElement('td'); // link
-                  tdLink.innerHTML = '<a href="' + w.url + '" target="_blank">check</a>';
-                  tr.appendChild(tdLink);
-              }
+              // {
+              //     const tdLink = document.createElement('td'); // link
+              //     tdLink.innerHTML = '<a href="' + w.url + '" target="_blank">check</a>';
+              //     tr.appendChild(tdLink);
+              // }
           });
       }
 
@@ -457,12 +457,15 @@
           // console.log('window_onload');
           const urlSearchParams = new URLSearchParams(window.location.search);
           document.getElementById('word').value = urlSearchParams.get('word');
+          document.getElementById('word').value = 'hour'
 
           const grid = document.getElementById('grid');
           names.forEach(n => {
               const div = document.createElement('div');
-              const c = urlSearchParams.get(n) === 'on' ? 'checked' : '';
-              div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '"' + c + ' onchange="check_word()"/>' + '' +
+              // const c = urlSearchParams.get(n) === 'on' ? 'checked' : '';
+              // div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '"' + c + ' onchange="check_word()"/>' + '' +
+              //     '<label for="' + n + '">' + n + '</label>';
+              div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '" checked onchange="check_word()"/>' + '' +
                   '<label for="' + n + '">' + n + '</label>';
               grid.appendChild(div);
           })
@@ -517,7 +520,7 @@
     <th>Database</th>
     <th>Version</th>
     <th>Available</th>
-    <th>Link</th>
+<!--    <th>Link</th>-->
   </tr>
   </thead>
   <tbody id="tbody">
