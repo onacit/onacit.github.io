@@ -1,512 +1,516 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1374804120934726"
-          crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZGVM71LBD"></script>
-  <script>
-      window.dataLayer = window.dataLayer || [];
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1374804120934726"
+            crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZGVM71LBD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-          dataLayer.push(arguments);
-      }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-      gtag('js', new Date());
+        gtag('js', new Date());
 
-      gtag('config', 'G-BZGVM71LBD');
-  </script>
-  <title>SQL Words Checker</title>
-  <!--  <link rel="stylesheet" href="https://cd¬n.simplecss.org/simple.min.css">-->
-  <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200" data-rh="true">-->
-  <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"-->
-  <!--        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">-->
-  <!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+        gtag('config', 'G-BZGVM71LBD');
+    </script>
+    <title>SQL Words Checker</title>
+    <!--  <link rel="stylesheet" href="https://cd¬n.simplecss.org/simple.min.css">-->
+    <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200" data-rh="true">-->
+    <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"-->
+    <!--        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">-->
+    <!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1374804120934726"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <script language="javascript" type="text/javascript">
+        // https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
+        class Word {
+            constructor(value, keyword, reserved) {
+                this.value = value;
+                this.keyword = keyword;
+                this.reserved = reserved;
+            }
+        }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-  <script language="javascript" type="text/javascript">
-      // https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
-      class Word {
-          constructor(value, keyword, reserved) {
-              this.value = value;
-              this.keyword = keyword;
-              this.reserved = reserved;
-          }
-      }
+        class Words {
+            constructor(name, version, url, file, words = []) {
+                this.name = name;
+                this.version = version;
+                this.url = url;
+                this.file = file;
+                this.words = words;
+            }
+        }
 
-      class Words {
-          constructor(name, version, url, file, words = []) {
-              this.name = name;
-              this.version = version;
-              this.url = url;
-              this.file = file;
-              this.words = words;
-          }
-      }
+        const set = [
+            new Words(
+                "SQL:2003",
+                "N/A",
+                null,
+                "_sql_2003.txt",
+                []
+            ),
+            new Words(
+                "SQLite",
+                "N/A",
+                "https://sqlite.org/lang_keywords.html",
+                "_sqlite.txt",
+                []
+            ),
+            new Words(
+                "MySQL",
+                "5.7",
+                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html",
+                "_mysql57.txt",
+                []
+            ),
+            new Words(
+                "MySQL",
+                "8.0",
+                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-0.html",
+                "_mysql80.txt",
+                []
+            ),
+            new Words(
+                "MySQL",
+                "8.4",
+                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-4.html",
+                "_mysql84.txt",
+                []
+            ),
+            new Words(
+                "MySQL",
+                "9.3",
+                "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
+                "_mysql.txt",
+                []
+            ),
+            new Words(
+                "PostgreSQL",
+                "13",
+                "https://www.postgresql.org/docs/13/sql-keywords-appendix.html",
+                "_postgresql_13.txt",
+                []
+            ),
+            new Words(
+                "PostgreSQL",
+                "14",
+                "https://www.postgresql.org/docs/14/sql-keywords-appendix.html",
+                "_postgresql_14.txt",
+                []
+            ),
+            new Words(
+                "PostgreSQL",
+                "15",
+                "https://www.postgresql.org/docs/15/sql-keywords-appendix.html",
+                "_postgresql_15.txt",
+                []
+            ),
+            new Words(
+                "PostgreSQL",
+                "16",
+                "https://www.postgresql.org/docs/16/sql-keywords-appendix.html",
+                "_postgresql_16.txt",
+                []
+            ),
+            new Words(
+                "PostgreSQL",
+                "17",
+                "https://www.postgresql.org/docs/17/sql-keywords-appendix.html",
+                "_postgresql_17.txt",
+                []
+            ),
+            new Words(
+                "DB2",
+                "9.7.0",
+                "https://www.ibm.com/docs/en/db2/9.7.0?topic=sql-reserved-schema-names-reserved-words",
+                "_db2_9_7_0.txt",
+                []
+            ),
+            new Words(
+                "DB2",
+                "10.1.0",
+                "https://www.ibm.com/docs/en/db2/10.1.0?topic=sql-reserved-schema-names-reserved-words",
+                "_db2_10_1_0.txt",
+                []
+            ),
+            new Words(
+                "DB2",
+                "10.5.0",
+                "https://www.ibm.com/docs/en/db2/10.5.0?topic=sql-reserved-schema-names-reserved-words",
+                "_db2_10_5_0.txt",
+                []
+            ),
+            new Words(
+                "DB2",
+                "11.1.0",
+                "https://www.ibm.com/docs/en/db2/11.1.0?topic=sql-reserved-schema-names-reserved-words",
+                "_db2_12_1_0.txt",
+                []
+            ),
+            new Words(
+                "DB2",
+                "11.5.x",
+                "https://www.ibm.com/docs/en/db2/11.5.x?topic=sql-reserved-schema-names-reserved-words",
+                "_db2_11_5_x.txt",
+                []
+            ),
+            new Words(
+                "DB2",
+                "12.1.0",
+                "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
+                "_db2_12_1_0.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "11.2",
+                "https://docs.oracle.com/cd/E11882_01/server.112/e41084/ap_keywd001.htm#BABCJAEB",
+                "_oracle_11_2.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "12.1",
+                "https://docs.oracle.com/database/121/SQLRF/ap_keywd001.htm#BABCJAEB",
+                "_oracle_12_1.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "12.2",
+                "https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqlrf/Oracle-SQL-Reserved-Words.html",
+                "_oracle_12_2.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "18",
+                "https://docs.oracle.com/en/database/oracle/oracle-database/18/sqlrf/Oracle-SQL-Reserved-Words.html",
+                "_oracle_18.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "19",
+                "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
+                "_oracle_19.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "21",
+                "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
+                "_oracle_21.txt",
+                []
+            ),
+            new Words(
+                "ORACLE",
+                "23",
+                "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
+                "_oracle_23.txt",
+                []
+            ),
+            // ------------------------------------------------------------------------------------------------ SQL Server
+            new Words(
+                "SQL Server",
+                "2016",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
+                "_sqlserver_2016.txt",
+                []
+            ),
+            new Words(
+                "SQL Server ODBC",
+                "2016",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
+                "_sqlserver_2016_odbc.txt",
+                []
+            ),
+            new Words(
+                "SQL Server Future",
+                "2016",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
+                "_sqlserver_2016_future.txt",
+                []
+            ),
+            new Words(
+                "SQL Server",
+                "2017",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
+                "_sqlserver_2017.txt",
+                []
+            ),
+            new Words(
+                "SQL Server ODBC",
+                "2017",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
+                "_sqlserver_2017_odbc.txt",
+                []
+            ),
+            new Words(
+                "SQL Server Future",
+                "2017",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
+                "_sqlserver_2017_future.txt",
+                []
+            ),
+            new Words(
+                "SQL Server",
+                "2019",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
+                "_sqlserver_2019.txt",
+                []
+            ),
+            new Words(
+                "SQL Server ODBC",
+                "2019",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
+                "_sqlserver_2019_odbc.txt",
+                []
+            ),
+            new Words(
+                "SQL Server Future",
+                "2019",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
+                "_sqlserver_2019_future.txt",
+                []
+            ),
+            new Words(
+                "SQL Server",
+                "2022",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
+                "_sqlserver_2022.txt",
+                []
+            ),
+            new Words(
+                "SQL Server ODBC",
+                "2022",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
+                "_sqlserver_2022_odbc.txt",
+                []
+            ),
+            new Words(
+                "SQL Server Future",
+                "2022",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
+                "_sqlserver_2022_future.txt",
+                []
+            ),
+            new Words(
+                "SQL Server",
+                "2025",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
+                "_sqlserver_2025.txt",
+                []
+            ),
+            new Words(
+                "SQL Server ODBC",
+                "2025",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
+                "_sqlserver_2025_odbc.txt",
+                []
+            ),
+            new Words(
+                "SQL Server Future",
+                "2025",
+                "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
+                "_sqlserver_2025_future.txt",
+                []
+            ),
+            new Words(
+                "Mimer SQL",
+                "10.0",
+                "https://docs.mimer.com/MimerSqlManual/v100/html/App_reserved_words.html#1110283",
+                "_mimer_sql_10_0.txt",
+                []
+            ),
+            new Words(
+                "Mimer SQL",
+                "11.0",
+                "https://docs.mimer.com/MimerSqlManual/v110/html/Manuals/App_reserved_words/App_reserved_words.htm",
+                "_mimer_sql_11_0.txt",
+                []
+            )
+        ]
 
-      const set = [
-          new Words(
-              "SQL:2003",
-              "N/A",
-              "https://www.oreilly.com/library/view/sql-for-dummies/9780470046524/apa.html",
-              "_sql_2003.txt",
-              []
-          ),
-          new Words(
-              "SQLite",
-              "N/A",
-              "https://sqlite.org/lang_keywords.html",
-              "_sqlite.txt",
-              []
-          ),
-          new Words(
-              "MySQL",
-              "5.7",
-              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-5-7.html",
-              "_mysql57.txt",
-              []
-          ),
-          new Words(
-              "MySQL",
-              "8.0",
-              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-0.html",
-              "_mysql80.txt",
-              []
-          ),
-          new Words(
-              "MySQL",
-              "8.4",
-              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-8-4.html",
-              "_mysql84.txt",
-              []
-          ),
-          new Words(
-              "MySQL",
-              "9.3",
-              "https://dev.mysql.com/doc/mysqld-version-reference/en/keywords-9-3.html",
-              "_mysql.txt",
-              []
-          ),
-          new Words(
-              "PostgreSQL",
-              "13",
-              "https://www.postgresql.org/docs/13/sql-keywords-appendix.html",
-              "_postgresql_13.txt",
-              []
-          ),
-          new Words(
-              "PostgreSQL",
-              "14",
-              "https://www.postgresql.org/docs/14/sql-keywords-appendix.html",
-              "_postgresql_14.txt",
-              []
-          ),
-          new Words(
-              "PostgreSQL",
-              "15",
-              "https://www.postgresql.org/docs/15/sql-keywords-appendix.html",
-              "_postgresql_15.txt",
-              []
-          ),
-          new Words(
-              "PostgreSQL",
-              "16",
-              "https://www.postgresql.org/docs/16/sql-keywords-appendix.html",
-              "_postgresql_16.txt",
-              []
-          ),
-          new Words(
-              "PostgreSQL",
-              "17",
-              "https://www.postgresql.org/docs/17/sql-keywords-appendix.html",
-              "_postgresql_17.txt",
-              []
-          ),
-          new Words(
-              "DB2",
-              "9.7.0",
-              "https://www.ibm.com/docs/en/db2/9.7.0?topic=sql-reserved-schema-names-reserved-words",
-              "_db2_9_7_0.txt",
-              []
-          ),
-          new Words(
-              "DB2",
-              "10.1.0",
-              "https://www.ibm.com/docs/en/db2/10.1.0?topic=sql-reserved-schema-names-reserved-words",
-              "_db2_10_1_0.txt",
-              []
-          ),
-          new Words(
-              "DB2",
-              "10.5.0",
-              "https://www.ibm.com/docs/en/db2/10.5.0?topic=sql-reserved-schema-names-reserved-words",
-              "_db2_10_5_0.txt",
-              []
-          ),
-          new Words(
-              "DB2",
-              "11.1.0",
-              "https://www.ibm.com/docs/en/db2/11.1.0?topic=sql-reserved-schema-names-reserved-words",
-              "_db2_12_1_0.txt",
-              []
-          ),
-          new Words(
-              "DB2",
-              "11.5.x",
-              "https://www.ibm.com/docs/en/db2/11.5.x?topic=sql-reserved-schema-names-reserved-words",
-              "_db2_11_5_x.txt",
-              []
-          ),
-          new Words(
-              "DB2",
-              "12.1.0",
-              "https://www.ibm.com/docs/en/db2/12.1.0?topic=sql-reserved-schema-names-reserved-words",
-              "_db2_12_1_0.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "11.2",
-              "https://docs.oracle.com/cd/E11882_01/server.112/e41084/ap_keywd001.htm#BABCJAEB",
-              "_oracle_11_2.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "12.1",
-              "https://docs.oracle.com/database/121/SQLRF/ap_keywd001.htm#BABCJAEB",
-              "_oracle_12_1.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "12.2",
-              "https://docs.oracle.com/en/database/oracle/oracle-database/12.2/sqlrf/Oracle-SQL-Reserved-Words.html",
-              "_oracle_12_2.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "18",
-              "https://docs.oracle.com/en/database/oracle/oracle-database/18/sqlrf/Oracle-SQL-Reserved-Words.html",
-              "_oracle_18.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "19",
-              "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
-              "_oracle_19.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "21",
-              "https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Oracle-SQL-Reserved-Words.html",
-              "_oracle_21.txt",
-              []
-          ),
-          new Words(
-              "ORACLE",
-              "23",
-              "https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/Oracle-SQL-Reserved-Words.html",
-              "_oracle_23.txt",
-              []
-          ),
-          // ------------------------------------------------------------------------------------------------ SQL Server
-          new Words(
-              "SQL Server",
-              "2016",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
-              "_sqlserver_2016.txt",
-              []
-          ),
-          new Words(
-              "SQL Server ODBC",
-              "2016",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
-              "_sqlserver_2016_odbc.txt",
-              []
-          ),
-          new Words(
-              "SQL Server Future",
-              "2016",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2016",
-              "_sqlserver_2016_future.txt",
-              []
-          ),
-          new Words(
-              "SQL Server",
-              "2017",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
-              "_sqlserver_2017.txt",
-              []
-          ),
-          new Words(
-              "SQL Server ODBC",
-              "2017",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
-              "_sqlserver_2017_odbc.txt",
-              []
-          ),
-          new Words(
-              "SQL Server Future",
-              "2017",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-2017",
-              "_sqlserver_2017_future.txt",
-              []
-          ),
-          new Words(
-              "SQL Server",
-              "2019",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
-              "_sqlserver_2019.txt",
-              []
-          ),
-          new Words(
-              "SQL Server ODBC",
-              "2019",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
-              "_sqlserver_2019_odbc.txt",
-              []
-          ),
-          new Words(
-              "SQL Server Future",
-              "2019",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver15",
-              "_sqlserver_2019_future.txt",
-              []
-          ),
-          new Words(
-              "SQL Server",
-              "2022",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
-              "_sqlserver_2022.txt",
-              []
-          ),
-          new Words(
-              "SQL Server ODBC",
-              "2022",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
-              "_sqlserver_2022_odbc.txt",
-              []
-          ),
-          new Words(
-              "SQL Server Future",
-              "2022",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16",
-              "_sqlserver_2022_future.txt",
-              []
-          ),
-          new Words(
-              "SQL Server",
-              "2025",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
-              "_sqlserver_2025.txt",
-              []
-          ),
-          new Words(
-              "SQL Server ODBC",
-              "2025",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
-              "_sqlserver_2025_odbc.txt",
-              []
-          ),
-          new Words(
-              "SQL Server Future",
-              "2025",
-              "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver17",
-              "_sqlserver_2025_future.txt",
-              []
-          ),
-          new Words(
-              "Mimer SQL",
-              "10.0",
-              "https://docs.mimer.com/MimerSqlManual/v100/html/App_reserved_words.html#1110283",
-              "_mimer_sql_10_0.txt",
-              []
-          ),
-          new Words(
-              "Mimer SQL",
-              "11.0",
-              "https://docs.mimer.com/MimerSqlManual/v110/html/Manuals/App_reserved_words/App_reserved_words.htm",
-              "_mimer_sql_11_0.txt",
-              []
-          )
-      ]
+        names = set.map(w => {
+            return w.name;
+        }).filter((v, i, a) => a.indexOf(v) === i);
+        // console.log('names: ' + names);
 
-      names = set.map(w => {
-          return w.name;
-      }).filter((v, i, a) => a.indexOf(v) === i);
-      // console.log('names: ' + names);
+        let promises;
 
-      let promises;
+        async function fetch_words() {
+            promises = set.map(w => {
+                return fetch(w.file)
+                    .then(r => r.text())
+                    .then(t => t.split('\n')
+                        .map(l => l.trim())
+                        .filter(l => l.length > 0)
+                        .map(l => {
+                            w.words.push(l);
+                        })
+                    );
+            });
+        }
 
-      async function fetch_words() {
-          promises = set.map(w => {
-              return fetch(w.file)
-                  .then(r => r.text())
-                  .then(t => t.split('\n')
-                      .map(l => l.trim())
-                      .filter(l => l.length > 0)
-                      .map(l => {
-                          w.words.push(l);
-                      })
-                  );
-          });
-      }
+        fetch_words();
 
-      fetch_words();
+        async function check_word() {
+            // console.log('check_word()');
 
-      async function check_word() {
-          // console.log('check_word()');
+            const result = await Promise.all(promises);
 
-          const result = await Promise.all(promises);
+            set.map(w => {
+                // console.log('words: ' + w.words);
+            });
 
-          set.map(w => {
-              // console.log('words: ' + w.words);
-          });
+            const tbody = document.getElementById('tbody');
+            // console.log("tbody.innerHTML: " + tbody.innerHTML);
 
-          const tbody = document.getElementById('tbody');
-          // console.log("tbody.innerHTML: " + tbody.innerHTML);
+            // delete all rows
+            {
+                // const rowCount = tbody.rows.length;
+                // console.log('rowCount: ' + rowCount);
+                // for (let i = rowCount - 1; i >= 0; i--) {
+                //     console.log('deleting ' + i);
+                //     tbody.deleteRow(i);
+                // }
+                // console.log('clearing tbody...')
+                tbody.innerHTML = '';
+                // console.log("tbody.innerHTML: " + tbody.innerHTML);
+                // const rows = tbody.querySelectorAll('tr');
+                // for (const row of rows) {
+                //     row.remove();
+                // }
+            }
 
-          // delete all rows
-          {
-              // const rowCount = tbody.rows.length;
-              // console.log('rowCount: ' + rowCount);
-              // for (let i = rowCount - 1; i >= 0; i--) {
-              //     console.log('deleting ' + i);
-              //     tbody.deleteRow(i);
-              // }
-              // console.log('clearing tbody...')
-              tbody.innerHTML = '';
-              // console.log("tbody.innerHTML: " + tbody.innerHTML);
-              // const rows = tbody.querySelectorAll('tr');
-              // for (const row of rows) {
-              //     row.remove();
-              // }
-          }
+            let word = document.getElementById('word').value;
+            if (word !== null) {
+                word = word.trim();
+            }
+            if (word === null || word.length === 0) {
+                // console.log("no word");
+                document.getElementById('current_word').innerHTML = '...';
+                return;
+            }
+            word = word.toUpperCase();
+            // console.log("checking... '" + word + "'");
+            document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
+            document.getElementById('tbody').innerHTML = '';
+            set.map(w => {
 
-          let word = document.getElementById('word').value;
-          if (word !== null) {
-              word = word.trim();
-          }
-          if (word === null || word.length === 0) {
-              // console.log("no word");
-              document.getElementById('current_word').innerHTML = '...';
-              return;
-          }
-          word = word.toUpperCase();
-          // console.log("checking... '" + word + "'");
-          document.getElementById('current_word').innerHTML = '<b>' + word + '</b>';
-          document.getElementById('tbody').innerHTML = '';
-          set.map(w => {
+                // const all = document.getElementsByName('All')[0].checked;
+                // if (all) {
+                //     document.getElementsByName(w.name)[0].disabled = false;
+                // } else {
+                //     document.getElementsByName(w.name)[0].enabled = true;
+                // }
+                const checked = document.getElementsByName(w.name)[0].checked;
+                // if (!all && !checked) {
+                if (!checked) {
+                    return;
+                }
 
-              // const all = document.getElementsByName('All')[0].checked;
-              // if (all) {
-              //     document.getElementsByName(w.name)[0].disabled = false;
-              // } else {
-              //     document.getElementsByName(w.name)[0].enabled = true;
-              // }
-              const checked = document.getElementsByName(w.name)[0].checked;
-              // if (!all && !checked) {
-              if (!checked) {
-                  return;
-              }
+                const unknown = w.words.length === 0;
+                const available = !w.words.includes(word);
+                const tr = document.createElement('tr');
+                // if (!available) {
+                //     tr.style.setProperty('background', '#F8CAB9');
+                // }
+                tbody.appendChild(tr);
+                {
+                    const tdName = document.createElement('td'); // name
+                    tdName.innerHTML = w.name;
+                    tr.appendChild(tdName);
+                }
+                {
+                    const tdVersion = document.createElement('td'); // version
+                    tdVersion.innerHTML = w.version;
+                    tr.appendChild(tdVersion);
+                }
+                {
+                    const tdAvailable = document.createElement('td'); // available
+                    if (!unknown) {
+                        if (available) {
+                            tdAvailable.innerHTML = '<div style="color:#398712">YES</div>';
+                        } else {
+                            tdAvailable.innerHTML = '<div style="color:#D93526;font-weight: bold;">NO</div>';
+                        }
+                    }
+                    tr.appendChild(tdAvailable);
+                }
+                {
+                    const tdLink = document.createElement('td'); // link
+                    if (w.url != null) {
+                        tdLink.innerHTML = '<a href="' + w.url + '" target="_blank">check</a>';
+                    } else {
+                        tdLink.innerHTML = '';
+                    }
+                    tr.appendChild(tdLink);
+                }
+            });
+        }
 
-              const unknown = w.words.length === 0;
-              const available = !w.words.includes(word);
-              const tr = document.createElement('tr');
-              // if (!available) {
-              //     tr.style.setProperty('background', '#F8CAB9');
-              // }
-              tbody.appendChild(tr);
-              {
-                  const tdName = document.createElement('td'); // name
-                  tdName.innerHTML = w.name;
-                  tr.appendChild(tdName);
-              }
-              {
-                  const tdVersion = document.createElement('td'); // version
-                  tdVersion.innerHTML = w.version;
-                  tr.appendChild(tdVersion);
-              }
-              {
-                  const tdAvailable = document.createElement('td'); // available
-                  if (!unknown) {
-                      if (available) {
-                          tdAvailable.innerHTML = '<div style="color:#398712">YES</div>';
-                      } else {
-                          tdAvailable.innerHTML = '<div style="color:#D93526;font-weight: bold;">NO</div>';
-                      }
-                  }
-                  tr.appendChild(tdAvailable);
-              }
-              // {
-              //     const tdLink = document.createElement('td'); // link
-              //     tdLink.innerHTML = '<a href="' + w.url + '" target="_blank">check</a>';
-              //     tr.appendChild(tdLink);
-              // }
-          });
-      }
+        function window_onload() {
+            // console.log('window_onload');
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            document.getElementById('word').value = urlSearchParams.get('word');
+            document.getElementById('word').value = 'hour'
 
-      function window_onload() {
-          // console.log('window_onload');
-          const urlSearchParams = new URLSearchParams(window.location.search);
-          document.getElementById('word').value = urlSearchParams.get('word');
-          document.getElementById('word').value = 'hour'
+            const grid = document.getElementById('grid');
+            names.forEach(n => {
+                const div = document.createElement('div');
+                // const c = urlSearchParams.get(n) === 'on' ? 'checked' : '';
+                // div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '"' + c + ' onchange="check_word()"/>' + '' +
+                //     '<label for="' + n + '">' + n + '</label>';
+                div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '" checked onchange="check_word()"/>' + '' +
+                    '<label for="' + n + '">' + n + '</label>';
+                grid.appendChild(div);
+            })
 
-          const grid = document.getElementById('grid');
-          names.forEach(n => {
-              const div = document.createElement('div');
-              // const c = urlSearchParams.get(n) === 'on' ? 'checked' : '';
-              // div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '"' + c + ' onchange="check_word()"/>' + '' +
-              //     '<label for="' + n + '">' + n + '</label>';
-              div.innerHTML = '<input type="checkbox" id="' + n + '" name="' + n + '" checked onchange="check_word()"/>' + '' +
-                  '<label for="' + n + '">' + n + '</label>';
-              grid.appendChild(div);
-          })
+            fetch_words();
+            check_word()
+        }
 
-          fetch_words();
-          check_word()
-      }
+        window.onload = window_onload;
 
-      window.onload = window_onload;
-
-  </script>
-  <style>
-      img {
-          /*max-width: 30px;*/
-          /*height: auto;*/
-          max-height: 30px;
-          width: auto;
-      }
-  </style>
+    </script>
+    <style>
+        img {
+            /*max-width: 30px;*/
+            /*height: auto;*/
+            max-height: 30px;
+            width: auto;
+        }
+    </style>
 </head>
 
 <body>
 
 
-
 <h1>SQL Words Checker</h1>
 
 <form action="">
-  <fieldset>
-    <label>
-      A word to check?
-      <input type="search" id="word" name="word" placeholder="A word to check?" oninput="check_word()"/>
-    </label>
-    <div id="grid" class="grid">
-      <!--      <div>-->
-      <!--        <input type="checkbox" id="all" name="All" checked onchange="check_word()"/>-->
-      <!--        <label for="all">All</label>-->
-      <!--      </div>-->
-    </div>
-  </fieldset>
-  <!--  <input type="submit" value="Check">-->
+    <fieldset>
+        <label>
+            A word to check?
+            <input type="search" id="word" name="word" placeholder="A word to check?" oninput="check_word()"/>
+        </label>
+        <div id="grid" class="grid">
+            <!--      <div>-->
+            <!--        <input type="checkbox" id="all" name="All" checked onchange="check_word()"/>-->
+            <!--        <label for="all">All</label>-->
+            <!--      </div>-->
+        </div>
+    </fieldset>
+    <!--  <input type="submit" value="Check">-->
 </form>
 
 <hr/>
@@ -514,17 +518,17 @@
 <p>Note that the of <em>Available</em> may imply various terms. Check the links.</p>
 
 <table class="striped">
-  <caption>Availability of <strong id="current_word" style="color:#3C71F7"></strong></caption>
-  <thead>
-  <tr>
-    <th>Database</th>
-    <th>Version</th>
-    <th>Available</th>
-<!--    <th>Link</th>-->
-  </tr>
-  </thead>
-  <tbody id="tbody">
-  </tbody>
+    <caption>Availability of <strong id="current_word" style="color:#3C71F7"></strong></caption>
+    <thead>
+    <tr>
+        <th>Database</th>
+        <th>Version</th>
+        <th>Available</th>
+        <th>Link</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
 </table>
 
 
@@ -540,18 +544,18 @@
 <!--<img src="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg" alt="PostgreSQL Logo"/>-->
 
 <ins class="kakao_ad_area" style="display:none;"
-     data-ad-unit = "DAN-nDJqUpECY5BQ7HAg"
-     data-ad-width = "320"
-     data-ad-height = "50"></ins>
+     data-ad-unit="DAN-nDJqUpECY5BQ7HAg"
+     data-ad-width="320"
+     data-ad-height="50"></ins>
 <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
 </body>
 
 <footer>
-  <p>
-    Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words
-    Checker</a> (by Pete Freitag)
-  </p>
+    <p>
+        Inspired by the <a href="https://www.petefreitag.com/tools/sql_reserved_words_checker">SQL Reserved Words
+        Checker</a> (by Pete Freitag)
+    </p>
 </footer>
 
 </html>
